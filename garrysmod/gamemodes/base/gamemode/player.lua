@@ -240,7 +240,7 @@ function GM:PlayerSpawn( pl, transiton )
 	end
 
 	-- Stop observer mode
-	pl:UnSpectate()
+	if ( !transiton ) then pl:UnSpectate() end
 
 	player_manager.OnPlayerSpawn( pl, transiton )
 	player_manager.RunClass( pl, "Spawn" )
