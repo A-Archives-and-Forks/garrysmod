@@ -1,6 +1,5 @@
 ---- Customized scoring
 
-local math = math
 local string = string
 local table = table
 local pairs = pairs
@@ -156,9 +155,7 @@ function SCORE:ApplyEventLogScores(wintype)
       end
    end
 
-   -- individual scores, and count those left alive
-   local alive = {traitors = 0, innos = 0}
-   local dead = {traitors = 0, innos = 0}
+   -- individual scores
    local scored_log = ScoreEventLog(self.Events, scores, traitors, detectives)
    local ply = nil
    for sid64, s in pairs(scored_log) do

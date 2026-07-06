@@ -1089,6 +1089,7 @@ function GM:Tick()
          end
 
          -- Run DNA Scanner think also when it is not deployed
+         local wep = ply:GetActiveWeapon()
          if IsValid(ply.scanner_weapon) and wep != ply.scanner_weapon then
             ply.scanner_weapon:Think()
          end

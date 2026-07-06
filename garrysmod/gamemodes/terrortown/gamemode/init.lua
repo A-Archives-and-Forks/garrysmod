@@ -681,7 +681,7 @@ function BeginRound()
 
    hook.Call("TTTBeginRound")
 
-   ents.TTT.TriggerRoundStateOutputs(ROUND_BEGIN)
+   ents.TTT.TriggerRoundStateOutputs(ROUND_ACTIVE)
 end
 
 function PrintResultMessage(type)
