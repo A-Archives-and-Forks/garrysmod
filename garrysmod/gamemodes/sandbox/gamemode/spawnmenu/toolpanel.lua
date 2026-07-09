@@ -21,20 +21,24 @@ function PANEL:Init()
 
 	local leftContainer = vgui.Create( "Panel", self.HorizontalDivider )
 
-	self.SearchBar = vgui.Create( "DTextEntry", leftContainer )
+	local searchContainer = vgui.Create( "Panel", leftContainer )
+	searchContainer:Dock( TOP )
+	searchContainer:SetTall( 21 )  -- For the checkbox to fit neatly
+	searchContainer:DockMargin( 0, 0, 0, 5 )
+
+	self.SearchBar = vgui.Create( "DTextEntry", searchContainer )
 	self.SearchBar:SetPlaceholderText( "#spawnmenu.quick_filter" )
-	self.SearchBar:DockMargin( 0, 0, 0, 5 )
-	self.SearchBar:Dock( TOP )
-	self.SearchBar:SetTall( 21 ) -- For the checkbox to fit neatly
+	self.SearchBar:DockMargin( 0, 0, 0, 0 )
+	self.SearchBar:Dock( FILL )
 	self.SearchBar:SetUpdateOnType( true )
 	self.SearchBar.OnValueChange = function( s, text )
 		self:PerformToolFiltering( text:Trim():lower() )
 	end
 
-	self.HideDeactivated = vgui.Create( "DCheckBox", self.SearchBar )
+	self.HideDeactivated = vgui.Create( "DCheckBox", searchContainer )
 	self.HideDeactivated:SetTooltip( "#spawnmenu.tools.hide_disabled" )
 	self.HideDeactivated:Dock( RIGHT )
-	self.HideDeactivated:DockMargin( 0, 3, 3, 3 )
+	self.HideDeactivated:DockMargin( 3, 3, 0, 3 )
 	self.HideDeactivated:SetConVar( cvar_hide_disabled:GetName() )
 
 	self.HideDeactivated.OnChange = function( s )
@@ -150,11 +154,9 @@ function PANEL:UpdateToolDisabledStatus()
 		for id, item in ipairs( category:GetChildren() ) do
 			if ( item == category.Header ) then continue end
 
-			local cvar = item.ConVar
-			if ( !cvar ) then continue end
-
-			local enabled = cvar:GetBool()
-			if ( enabled and !hook.Run( "CanTool", LocalPlayer(), fakeTrace, item.Name, LocalPlayer():GetTool( item.Name ), 4 ) ) then
+			-- Only tools have ConVars, some addons mix and match tool and non tool tabs
+			local enabled = !item.ConVar || item.ConVar:GetBool()
+			if ( item.ConVar && enabled and !hook.Run( "CanTool", LocalPlayer(), fakeTrace, item.Name, LocalPlayer():GetTool( item.Name ), 4 ) ) then
 				enabled = false
 			end
 
