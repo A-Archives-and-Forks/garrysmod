@@ -481,6 +481,7 @@ if ( IsMounted( "hl1" ) or IsMounted( "hl1mp" ) ) then
 	AddNPC( { Class = "monster_human_assassin", Category = Category } )
 	AddNPC( { Class = "monster_babycrab", Category = Category } )
 	AddNPC( { Class = "monster_human_grunt", Category = Category } )
+	--AddNPC( { Class = "monster_human_grunt", Category = Category, KeyValues = { weapons = "8" } }, "monster_human_grunt_shotgun" )
 	AddNPC( { Class = "monster_cockroach", Category = Category } )
 	AddNPC( { Class = "monster_houndeye", Category = Category } )
 	AddNPC( { Class = "monster_scientist", Category = Category, KeyValues = { body = "-1" } } )
@@ -489,6 +490,7 @@ if ( IsMounted( "hl1" ) or IsMounted( "hl1mp" ) ) then
 	AddNPC( { Class = "monster_headcrab", Category = Category } )
 	AddNPC( { Class = "monster_alien_controller", Category = Category, NoDrop = true } )
 	AddNPC( { Class = "monster_barney", Category = Category } )
+	--AddNPC( { Class = "monster_gman", Category = Category } )
 
 	-- Hack to have it not invert angles again
 	local turretOnDupe = function( npc, data ) npc:SetKeyValue( "spawnflags", bit.bor( npc.SpawnFlags, 2048 ) ) end
