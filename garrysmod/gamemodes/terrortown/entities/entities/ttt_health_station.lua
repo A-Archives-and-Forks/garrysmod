@@ -149,13 +149,13 @@ if SERVER then
    end
 
    local ttt_damage_own_healthstation = CreateConVar("ttt_damage_own_healthstation", "0") -- 0 as detective cannot damage their own health station
-	
+
    -- traditional equipment destruction effects
    function ENT:OnTakeDamage(dmginfo)
       local att = dmginfo:GetAttacker()
       local placer = self:GetPlacer()
       if att == placer and not ttt_damage_own_healthstation:GetBool() then return end
-   
+
       self:TakePhysicsDamage(dmginfo)
 
       self:SetHealth(self:Health() - dmginfo:GetDamage())
