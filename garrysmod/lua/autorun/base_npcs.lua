@@ -237,8 +237,7 @@ AddNPC( {
 AddNPC( {
 	Class = "npc_antlionguard",
 	Category = Category,
-	KeyValues = { cavernbreed = 1, incavern = 1, SquadName = "antlions" },
-	Material = "Models/antlion_guard/antlionGuard2"
+	KeyValues = { cavernbreed = 1, incavern = 1, SquadName = "antlions" }
 }, "npc_antlionguardian" )
 
 AddNPC( {
