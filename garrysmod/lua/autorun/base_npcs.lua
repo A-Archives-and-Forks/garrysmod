@@ -159,6 +159,14 @@ AddNPC( {
 	NoDrop = true
 }, "npc_rollermine_hacked" )
 
+AddNPC( {
+	Class = "npc_manhack",
+	Category = Category,
+	KeyValues = { SquadName = "resistance" },
+	SpawnFlags = 2097152, -- SF_MANHACK_HACKED
+	NoDrop = true
+}, "npc_manhack_hacked" )
+
 Category = "#spawnmenu.category.zombies_aliens"
 
 AddNPC( {
